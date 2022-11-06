@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.*;
 public class ControllerGenericImpl<T extends BaseModel> implements ControllerGeneric<T> {
 
     @Autowired
-    private ServiceGeneric serviceGeneric;
-//    private ServiceGeneric<T> serviceGeneric;
+//    private ServiceGeneric serviceGeneric;
+    private ServiceGeneric<T> serviceGeneric;
     @Override
     @PostMapping
     public ResponseEntity<Object> save(@RequestBody  T model) {
@@ -48,4 +48,27 @@ public class ControllerGenericImpl<T extends BaseModel> implements ControllerGen
             return new ResponseEntity("Gaggal hapus", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @Override
+    @GetMapping("/{id}")
+    public ResponseEntity<T> findById(@PathVariable  Long id) {
+        try {
+            return new ResponseEntity(serviceGeneric.findById(id), HttpStatus.OK);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity("Data tidak ada", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @Override
+    @PutMapping("/{id}")
+    public ResponseEntity<T> update(T model, Long id) {
+         try {
+             return new ResponseEntity(serviceGeneric.update(model, id), HttpStatus.OK);
+         }catch (Exception e){
+             return new ResponseEntity("Data gagal update", HttpStatus.INTERNAL_SERVER_ERROR);
+         }
+    }
+
+
 }

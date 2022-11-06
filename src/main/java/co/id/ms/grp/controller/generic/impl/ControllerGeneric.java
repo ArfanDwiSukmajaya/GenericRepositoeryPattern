@@ -9,4 +9,7 @@ public interface ControllerGeneric <T extends BaseModel> {
     ResponseEntity<Object> save(@RequestBody T model);
     ResponseEntity<T> findAll();
     ResponseEntity<String> delete(@PathVariable Long id);
+    ResponseEntity<T> findById(@PathVariable Long id);
+    ResponseEntity<T> update(@RequestBody T model, @PathVariable Long id);
+
 }

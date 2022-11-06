@@ -2,6 +2,7 @@ package co.id.ms.grp.model;
 
 
 import co.id.ms.grp.model.baseModel.BaseModel;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
@@ -17,5 +18,7 @@ public class Region extends BaseModel {
     private String name;
 
     @OneToMany(mappedBy = "region", cascade = CascadeType.ALL)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<Country> countries;
+
 }
