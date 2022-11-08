@@ -3,6 +3,7 @@ package co.id.ms.grp.controller.generic;
 import co.id.ms.grp.controller.generic.impl.ControllerGeneric;
 import co.id.ms.grp.model.baseModel.BaseModel;
 import co.id.ms.grp.service.generic.ServiceGeneric;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,9 +13,10 @@ import org.springframework.web.bind.annotation.*;
 @ResponseBody
 public class ControllerGenericImpl<T extends BaseModel> implements ControllerGeneric<T> {
 
-    @Autowired
 //    private ServiceGeneric serviceGeneric;
+    @Autowired
     private ServiceGeneric<T> serviceGeneric;
+
     @Override
     @PostMapping
     public ResponseEntity<Object> save(@RequestBody  T model) {

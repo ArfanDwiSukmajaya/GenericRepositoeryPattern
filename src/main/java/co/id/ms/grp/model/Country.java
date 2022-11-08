@@ -13,6 +13,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class Country extends BaseModel {
 
+    @Column(nullable = false, length = 5)
+    private String code;
+
     @Column(nullable = false, length = 40)
     private String name;
 
